@@ -1,0 +1,22 @@
+{
+  "generator-jhipster": {
+    "baseName": "StudentSystem",
+    "packageName": "com.ibm.student",
+    "packageFolder": "com/ibm/student",
+    "authenticationType": "xauth",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "b2f32baebbbcd33dfe1552b94421764f8781b583",
+    "testFrameworks": []
+  }
+}
