@@ -23,7 +23,7 @@ spring:
         url: jdbc:mysql://localhost:3306/studentsystem?useUnicode=true&characterEncoding=utf8
         name:
         username: root
-        password: "123456"
+        password: "150710"
     jpa:
         database-platform: org.hibernate.dialect.MySQLInnoDBDialect
         database: MYSQL
