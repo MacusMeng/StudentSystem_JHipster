@@ -1,0 +1,39 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "number",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "gender",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "classes",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "subject",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "scord",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20151226203221",
+    "dto": "no",
+    "service": "no",
+    "pagination": "no"
+}

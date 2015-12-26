@@ -1,0 +1,60 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myStudentRecordLabel">Create or edit a StudentRecord</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="studentRecord.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_number">Number</label>
+            <input type="text" class="form-control" name="number" id="field_number"
+                    ng-model="studentRecord.number"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="studentRecord.name"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_gender">Gender</label>
+            <select class="form-control" ng-model="studentRecord.gender" ng-options="gender for gender in genders"></select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_classes">Classes</label>
+            <input type="text" class="form-control" name="classes" id="field_classes"
+                    ng-model="studentRecord.classes"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_subject">Subject</label>
+            <input type="text" class="form-control" name="subject" id="field_subject"
+                    ng-model="studentRecord.subject"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_scord">Scord</label>
+            <input type="text" class="form-control" name="scord" id="field_scord"
+                    ng-model="studentRecord.scord"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

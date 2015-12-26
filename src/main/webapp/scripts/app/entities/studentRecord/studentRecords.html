@@ -1,0 +1,73 @@
+<div>
+    <h2>StudentRecords</h2>
+    <jh-alert></jh-alert>
+   <div class="row">
+        <div class="col-md-2">
+            <button type="button"  ng-click="deleteSelected()"
+                                class="btn btn-danger btn-primary">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Batch Delete</span>
+                        </button>
+            </div>
+            <div class="col-md-7">
+                <button class="btn btn-primary" ui-sref="studentRecord.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new StudentRecord</span>
+                </button>
+            </div>
+            <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="name or id" name="searchCondition" id="searchCondition"/>
+            </div>
+            <div>
+            <button type="submit"
+                                ui-sref="studentRecord.delete({id:studentRecord.id})"
+                                class="btn  btn-primary">
+                            <span class="glyphicon glyphicon-search"></span>&nbsp;<span> Search</span>
+                        </button>
+            </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th><span></span></th>
+                    <th><span>ID</span></th>
+                    <th><span>Number</span></th>
+                    <th><span>Name</span></th>
+                    <th><span>Gender</span></th>
+                    <th><span>Classes</span></th>
+                    <th><span>Subject</span></th>
+                    <th><span>Scord</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="studentRecord in studentRecords track by studentRecord.id">
+                <td><input type="checkbox"  ng-model="idSelected" ng-checked="master" ng-click="check(studentRecord.id,idSelected)"></td>
+                    <td><a ui-sref="studentRecord.detail({id:studentRecord.id})">{{studentRecord.id}}</a></td>
+                    <td>{{studentRecord.number}}</td>
+                    <td>{{studentRecord.name}}</td>
+                    <td>{{studentRecord.gender}}</td>
+                    <td>{{studentRecord.classes}}</td>
+                    <td>{{studentRecord.subject}}</td>
+                    <td>{{studentRecord.scord}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="studentRecord.detail({id:studentRecord.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="studentRecord.edit({id:studentRecord.id})"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ui-sref="studentRecord.delete({id:studentRecord.id})"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
