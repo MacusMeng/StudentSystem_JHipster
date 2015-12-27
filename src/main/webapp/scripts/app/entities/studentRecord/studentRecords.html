@@ -14,11 +14,11 @@
                 </button>
             </div>
             <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="name or id" name="searchCondition" id="searchCondition"/>
+            <input type="text" class="form-control" placeholder="id" ng-model="number" />
             </div>
             <div>
             <button type="submit"
-                                ui-sref="studentRecord.delete({id:studentRecord.id})"
+                                ui-sref="studentRecord.detail({id:number})"
                                 class="btn  btn-primary">
                             <span class="glyphicon glyphicon-search"></span>&nbsp;<span> Search</span>
                         </button>
