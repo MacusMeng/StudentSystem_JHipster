@@ -2,13 +2,18 @@
 
 angular.module('studentSystemApp')
     .controller('StudentRecordController', function ($scope, $state, StudentRecord) {
-     	var flag='';
 	    var str='';
 	    $scope.idSelected=false;
         $scope.studentRecords = [];
         $scope.loadAll = function() {
             StudentRecord.query(function(result) {
                $scope.studentRecords = result;
+            });
+        };
+        $scope.searchCondition=function(){
+            StudentRecord.query($scope.studentRecord,function(result) {
+                $scope.studentRecords = result;
+                $scope.refresh();
             });
         };
         $scope.loadAll();
@@ -38,12 +43,14 @@ angular.module('studentSystemApp')
           }
       };
       $scope.deleteSelected= function () {// 操作CURD
-          if(str.length==0){//没有选择一个的时候提示
-          	   console.log('请至少选中一条数据在操作!');
+          if (str.length != 0) {
+              var ids=str.substring(0, str.length - 1);
+              console.log(ids);
+              //$scope.$broadcast('to-child', ids);
+              $state.go('studentRecord.deleteSelected', {ids:ids});
+          } else {//没有选择一个的时候提示
+              console.log('请至少选中一条数据在操作!');
               return;
-          }else{
-          	console.log(str);
-          	$state.go('studentRecord.delete',{str:str})
           }
       };
     });

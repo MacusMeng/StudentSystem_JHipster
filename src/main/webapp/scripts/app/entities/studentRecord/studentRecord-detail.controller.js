@@ -2,7 +2,7 @@
 
 angular.module('studentSystemApp')
     .controller('StudentRecordDetailController', function ($scope, $rootScope, $stateParams, entity, StudentRecord) {
-        $scope.studentRecord = entity;
+        $scope.ids = entity;
         $scope.load = function (id) {
             StudentRecord.get({id: id}, function(result) {
                 $scope.studentRecord = result;

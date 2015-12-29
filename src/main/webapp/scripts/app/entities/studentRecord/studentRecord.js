@@ -42,7 +42,7 @@ angular.module('studentSystemApp')
                 parent: 'studentRecord',
                 url: '/new',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -62,7 +62,7 @@ angular.module('studentSystemApp')
                                 };
                             }
                         }
-                    }).result.then(function(result) {
+                    }).result.then(function() {
                         $state.go('studentRecord', null, { reload: true });
                     }, function() {
                         $state.go('studentRecord');
@@ -73,7 +73,7 @@ angular.module('studentSystemApp')
                 parent: 'studentRecord',
                 url: '/{id}/edit',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -96,7 +96,7 @@ angular.module('studentSystemApp')
                 parent: 'studentRecord',
                 url: '/{id}/delete',
                 data: {
-                    authorities: ['ROLE_USER'],
+                    authorities: ['ROLE_ADMIN'],
                 },
                 onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                     $uibModal.open({
@@ -114,5 +114,41 @@ angular.module('studentSystemApp')
                         $state.go('^');
                     })
                 }]
+            })
+            .state('studentRecord.deleteSelected', {
+                parent: 'studentRecord',
+                url: '/{ids}/deleteSelected',
+                data: {
+                    authorities: ['ROLE_ADMIN'],
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'scripts/app/entities/studentRecord/studentRecord-delete-selected.html',
+                        controller: 'StudentSelectedDeleteController',
+                        size: 'md',
+                        resolve: {
+                        }
+                    }).result.then(function(result) {
+                        $state.go('studentRecord', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    })
+                }]
+            })
+            .state('studentRecord.search', {
+                parent: 'entity',
+                url: '/number={number}/search',
+                data: {
+                    authorities: ['ROLE_USER'],
+                    pageTitle: 'StudentRecords'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/entities/studentRecord/studentRecords.html',
+                        controller: 'StudentRecordController'
+                    }
+                },
+                resolve: {
+                }
             });
     });

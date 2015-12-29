@@ -1,4 +1,5 @@
 <div>
+    <form name="reloadForm" role="form" novalidate ng-submit="searchCondition()">
     <h2>StudentRecords</h2>
     <jh-alert></jh-alert>
    <div class="row">
@@ -14,11 +15,11 @@
                 </button>
             </div>
             <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="id" ng-model="number" />
+            <input type="text" class="form-control" placeholder="number" ng-model="studentRecord.number" />
             </div>
             <div>
             <button type="submit"
-                                ui-sref="studentRecord.detail({id:number})"
+                    ng-disabled="reloadForm.$invalid"
                                 class="btn  btn-primary">
                             <span class="glyphicon glyphicon-search"></span>&nbsp;<span> Search</span>
                         </button>
@@ -50,17 +51,17 @@
                     <td>{{studentRecord.subject}}</td>
                     <td>{{studentRecord.scord}}</td>
                     <td>
-                        <button type="submit"
+                        <button type="button"
                                 ui-sref="studentRecord.detail({id:studentRecord.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
                         </button>
-                        <button type="submit"
+                        <button type="button"
                                 ui-sref="studentRecord.edit({id:studentRecord.id})"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
                         </button>
-                        <button type="submit"
+                        <button type="button"
                                 ui-sref="studentRecord.delete({id:studentRecord.id})"
                                 class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
@@ -70,4 +71,5 @@
             </tbody>
         </table>
     </div>
+        </form>
 </div>

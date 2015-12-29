@@ -2,8 +2,11 @@ package com.ibm.student.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.ibm.student.domain.StudentRecord;
+import com.ibm.student.domain.StudentRequest;
 import com.ibm.student.repository.StudentRecordRepository;
 import com.ibm.student.web.rest.util.HeaderUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -15,8 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.LongAccumulator;
 
 /**
  * REST controller for managing StudentRecord.
@@ -26,10 +31,10 @@ import java.util.Optional;
 public class StudentRecordResource {
 
     private final Logger log = LoggerFactory.getLogger(StudentRecordResource.class);
-        
+
     @Inject
     private StudentRecordRepository studentRecordRepository;
-    
+
     /**
      * POST  /studentRecords -> Create a new studentRecord.
      */
@@ -106,5 +111,17 @@ public class StudentRecordResource {
         log.debug("REST request to delete StudentRecord : {}", id);
         studentRecordRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("studentRecord", id.toString())).build();
+    }
+    /**
+     * DELETE  /studentRecords/:id -> delete the "id" studentRecord.
+     */
+    @RequestMapping(value = "/studentRecords/selected",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Void> deleteStudentSelected(@RequestBody StudentRequest studentRequest){
+        log.debug("REST request to delete StudentRecords : {}", studentRequest.getIds());
+        studentRecordRepository.delete(studentRecordRepository.findAll(studentRequest.getIds()));
+        return ResponseEntity.ok().headers(HeaderUtil.createEntitiesDeletionAlert("studentRecord", studentRequest.idstoString(studentRequest.getIds()))).build();
     }
 }

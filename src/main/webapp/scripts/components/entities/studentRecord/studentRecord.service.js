@@ -14,3 +14,9 @@ angular.module('studentSystemApp')
             'update': { method:'PUT' }
         });
     });
+angular.module('studentSystemApp')
+    .factory('StudentRequest', function ($resource, DateUtils) {
+        return $resource('api/studentRecords/selected/:ids', {}, {
+            'remove': { method: 'POST'}
+        });
+    });
