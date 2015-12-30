@@ -1,15 +1,24 @@
 'use strict';
 
 angular.module('studentSystemApp')
-    .controller('StudentRecordController', function ($scope, $state, StudentRecord) {
+    .controller('StudentRecordController', function ($scope, $state, StudentRecord,ParseLinks) {
 	    var str='';
 	    $scope.idSelected=false;
         $scope.studentRecords = [];
+        $scope.predicate = 'id';
+        $scope.reverse = true;
+        $scope.page = 1;
         $scope.loadAll = function() {
-            StudentRecord.query(function(result) {
-               $scope.studentRecords = result;
+            StudentRecord.query({page:$scope.page - 1,size:8,sort:[$scope.predicate + ',' + ($scope.reverse ? 'asc' : 'desc'),'id']},function(result,headers) {
+                $scope.links = ParseLinks.parse(headers('link'));
+                $scope.totalItems = headers('X-Total-Count');
+                $scope.studentRecords = result;
             });
         };
+        $scope.loadPage = function(page){
+            $scope.page = page;
+            $scope.loadAll();
+        }
         $scope.searchCondition=function(){
             StudentRecord.query($scope.studentRecord,function(result) {
                 $scope.studentRecords = result;
