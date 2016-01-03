@@ -85,7 +85,7 @@ angular.module('studentSystemApp')
                                 return StudentRecord.get({id : $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
+                    }).result.then(function() {
                         $state.go('studentRecord', null, { reload: true });
                     }, function() {
                         $state.go('^');
@@ -108,7 +108,7 @@ angular.module('studentSystemApp')
                                 return StudentRecord.get({id : $stateParams.id});
                             }]
                         }
-                    }).result.then(function(result) {
+                    }).result.then(function() {
                         $state.go('studentRecord', null, { reload: true });
                     }, function() {
                         $state.go('^');
@@ -117,7 +117,7 @@ angular.module('studentSystemApp')
             })
             .state('studentRecord.deleteSelected', {
                 parent: 'studentRecord',
-                url: '/{ids}/deleteSelected',
+                url: '/deleteSelected',
                 data: {
                     authorities: ['ROLE_ADMIN'],
                 },
@@ -128,7 +128,27 @@ angular.module('studentSystemApp')
                         size: 'md',
                         resolve: {
                         }
-                    }).result.then(function(result) {
+                    }).result.then(function() {
+                        $state.go('studentRecord', null, { reload: true });
+                    }, function() {
+                        $state.go('^');
+                    })
+                }]
+            })
+            .state('studentRecord.notice', {
+                parent: 'studentRecord',
+                url: '/notice',
+                data: {
+                    authorities: ['ROLE_ADMIN'],
+                },
+                onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                    $uibModal.open({
+                        templateUrl: 'scripts/app/entities/studentRecord/studentRecord-notice.html',
+                        controller: 'StudentRecordNoticeController',
+                        size: 'md',
+                        resolve: {
+                        }
+                    }).result.then(function() {
                         $state.go('studentRecord', null, { reload: true });
                     }, function() {
                         $state.go('^');

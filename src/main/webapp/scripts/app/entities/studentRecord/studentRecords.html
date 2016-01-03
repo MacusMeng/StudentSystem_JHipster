@@ -28,7 +28,7 @@
         <table class="table table-striped">
             <thead>
                 <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
-                <th><span></span></th>
+                <th><span><input type="checkbox"  ng-model="master" ng-click="selectAll(master)"></span></th>
                     <th jh-sort-by="id"><span>ID</span><span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="number"><span>Number</span><span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span>Name</span><span class="glyphicon glyphicon-sort"></span></th>
